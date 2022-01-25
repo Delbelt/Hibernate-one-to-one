@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="datos.Contacto" table="contacto">
+	
+	<!-- DECLARACION DE TIPO: FOREIGN + TABLA PRINCIPAL -->
+	
+	<id
+	column="idContacto" name="idContacto">	
+	<generator class="foreign">
+	<param name="property">cliente</param>
+	</generator>	
+	</id>
+
+	<!-- PROPIEDADES -->
+	
+	<property column="email" name="email" type="string"/>
+	<property column="movil" name="movil" type="string"/>
+	<property column="fijo" name="fijo" type="string"/>
+	
+	<!-- SI SE INDICA ACA LA RELACION, SE CONVIERTE EN BIDIRECCIONAL -->
+	<!-- ES DECIR QUE DESDE ESTA CLASE FORANEA SE ACCEDERA A LA PRINCIPAL -->
+	<!--SI ES BIDIRECCIONAL, EN LA CLASE DATOS DE LA FOREING, TIENE QUE IR: Objeto objeto en la clase-->
+	
+	<one-to-one name="cliente" class="datos.Cliente"></one-to-one>
+	
+	</class>
+	
+</hibernate-mapping>
